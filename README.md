@@ -1,2 +1,2 @@
 # Public Spending Analisys
-Análise de Gastos Públicos do Portal da Trasnparência
+Análise de Gastos Públicos do Portal da Transparência
