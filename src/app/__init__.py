@@ -6,7 +6,7 @@ adm = False
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", Title="Home")
 
 # Get variable from URL
 @app.route("/<name>")
