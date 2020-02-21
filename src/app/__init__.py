@@ -19,4 +19,4 @@ def admin():
         return redirect(url_for("home_")) # redirect for function name
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
