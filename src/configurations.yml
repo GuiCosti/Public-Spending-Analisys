@@ -1,3 +1,5 @@
 DataSource:
     Host: http://www.transparencia.gov.br
     Route: /api-de-dados/cartoes
+Database:
+    Path: ./database.db
