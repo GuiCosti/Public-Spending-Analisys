@@ -16,14 +16,19 @@
   <!-- Push down content on small screens --> 
   <div class="w3-hide-large" style="margin-top:83px"></div>
 
+  <!-- Team section -->
+  <div class="w3-container w3-center w3-padding-32" id="team">
+    <h4><b>Equipe</b></h4>
+  </div>
+
     <!-- Photo grid -->
   <div class="w3-row text-center">
     <div class="img-responsive center-block">
-      <img src="/static/img/gui.jpeg" class="img-thumbnail rounded" onclick="onClick(this)" alt="The Beach. Me. Alone. Beautiful" style="width:200px; height:263.5px;">
-      <img src="/static/img/francisco.jpg" width="200" height="263.5" class="img-thumbnail rounded" onclick="onClick(this)" alt="What a beautiful scenery this sunset" style="width:200px;height: 263.5px;">
-      <img src="/static/img/ra.jpg" width="200" height="263.5" class="img-thumbnail rounded" onclick="onClick(this)" alt="What a beautiful scenery this sunset" style="width:200px;height: 263.5px;">
-      <img src="/static/img/gui-lud.jpg" class="img-thumbnail rounded" onclick="onClick(this)" alt="A boy surrounded by beautiful nature" style="width:200px;height: 263.5px;">
-      <img src="/static/img/will.jpg" class="img-thumbnail rounded" onclick="onClick(this)" alt="A boy surrounded by beautiful nature" style="width:200px;height: 263.5px;">
+      <img src="/static/img/gui.jpeg" class="img-thumbnail rounded" onclick="onClick(this)" alt="Guilherme Costi" style="width:200px; height:263.5px;">
+      <img src="/static/img/francisco.jpg" width="200" height="263.5" class="img-thumbnail rounded" onclick="onClick(this)" alt="Francisco Forestiero" style="width:200px;height: 263.5px;">
+      <img src="/static/img/ra.jpg" width="200" height="263.5" class="img-thumbnail rounded" onclick="onClick(this)" alt="Raquel Debczinsky" style="width:200px;height: 263.5px;">
+      <img src="/static/img/gui-lud.jpg" class="img-thumbnail rounded" onclick="onClick(this)" alt="Guilherme Ludwig" style="width:200px;height: 263.5px;">
+      <img src="/static/img/will.jpg" class="img-thumbnail rounded" onclick="onClick(this)" alt="Wiliam Outi" style="width:200px;height: 263.5px;">
     </div>
   </div>
 
@@ -47,42 +52,94 @@
     <h4><b>Sobre</b></h4>
     <div class="w3-content w3-justify" style="max-width:600px">
       <h4>Proposta</h4>
-      <p>A proposta do nosso trabalho é analisar os gastos do Portal da Transparência, para detectarmos gastos anômalos no sistema público. Some text about me. I love taking photos of PEOPLE. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <p>A proposta do nosso trabalho é analisar os gastos do Portal da Transparência, para detectarmos anomalias no sistema público.
+        Nossa equipe é composto por 5 cientistas de dados que vieram de diversas áreas de atuação diferente e o projeto teve inicio na conclusão do curso de Data Science.
+        Realizamos a coleta de um intervalo específico de tempo no Portal da Transparência, através da API que eles disponiblizam.
+        Depois da coleta dos dados, iniciamos o entendimento das features e identificamos que era viável realizar o estudo planejado.
+        Em sequência, fomos para a análise exploratória dos dados e realizamos as transformações necessárias para o treinamento do modelo.
+        Efetuamos o Feature Engeneering e elencamos alguns modelos para solucionar o problema. 
+        Para o Modelo de Machine Learning, optamos pela Isolation Forest, pois é um modelo determinístico e interpretável, e realizamos o treinamento, seguido da identificação dos gastos anômalos.
+        Após a classificação, realizamos um estudo para entender se os gastos anômalos realmente poderiam ser classificados assim, e concluímos que 
+        o modelo conseguiu identificá-los com sucesso.
+        Após a classificação, elencamos os TOP 10 funcionários públicos que possuíam gastos anômalos e criamos nosso ranking.
+        Nosso propósito com esse projeto era de trazer ainda mais transparência para os gastos públicos, na busca de conseguirmos um país mais justo.
       </p>
-      <p>mail: example@example.com</p>
-      <p>tel: 5353 35531</p>
+    </br>
+      <p><h4>Integrantes (A-Z):</h4></p>
+      <p>- Francisco Forestiero (francisco.forestiero@hotmail.com)</p>
+      <p>- Guilherme Ludwig (guilhermegludwig@gmail.com)</p>
+      <p>- Guilherme Costi (costi.guilherme@gmail.com)</p>
+      <p>- Raquel Debczinsky (debczinsky.gmail@hotmail.com)</p>
+      <p>- Wiliam Outi (wouti@oul.com.br)</p>
       <hr class="w3-opacity">
-      <h4 class="w3-padding-16">Progresso</h4>
+      <h4 class="w3-padding-16">Esforço por Etapa</h4>
       <p class="w3-wide">Coleta dos Dados</p>
       <div class="w3-white">
-        <div class="w3-container w3-padding-small w3-center w3-grey" style="width:95%">95%</div>
+        <div class="w3-container w3-padding-small w3-center w3-blue" style="width:5%">5%</div>
       </div>
-      <p class="w3-wide">Análise Exploratória</p>
+      <p class="w3-wide">Análise dos Dados & Estratégias</p>
       <div class="w3-white">
-        <div class="w3-container w3-padding-small w3-center w3-grey" style="width:25%">25%</div>
+        <div class="w3-container w3-padding-small w3-center w3-blue" style="width:50%">50%</div>
       </div>
-      <p class="w3-wide">Inferência com Machine Learning</p>
+      <p class="w3-wide">Feature Engeneering</p>
       <div class="w3-white">
-        <div class="w3-container w3-padding-small w3-center w3-grey" style="width:5%">5%</div>
+        <div class="w3-container w3-padding-small w3-center w3-blue" style="width:20%">20%</div>
+      </div>
+      <p class="w3-wide">Treinamento e Aplicação do Machine Learning</p>
+      <div class="w3-white">
+        <div class="w3-container w3-padding-small w3-center w3-blue" style="width:15%">15%</div>
+      </div>
+      <p class="w3-wide">Construção da Apresentação do Projeto</p>
+      <div class="w3-white">
+        <div class="w3-container w3-padding-small w3-center w3-blue" style="width:10%">10%</div>
       </div>
       <hr class="w3-opacity">
     </div>
   </div>
 
   <!-- Overview section -->
-  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="overview">
+  <div class="w3-container w3-center w3-padding-32" id="overview">
     <h4><b>Overview</b></h4>
-    <div class="w3-content w3-justify" style="max-width:1100px;max-heitgh:1600px">
+    <div class="w3-content w3-justify" style="max-width:1000px; max-heitgh:1800px">
 
-<div class='tableauPlaceholder' id='viz1583697232180' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ga&#47;Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ga&#47;Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1583697232180');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='1625px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='1427px';} else { vizElement.style.width='100%';vizElement.style.height='1477px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<div class='tableauPlaceholder' id='viz1583697232180' style='position: relative'>
+  <noscript>
+    <a href='#'>
+      <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ga&#47;Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico&#47;1_rss.png' style='border: none' />
+    </a>
+  </noscript>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+    <param name='embed_code_version' value='3' /> <param name='site_root' value='' />
+    <param name='name' value='Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico' />
+    <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ga&#47;Gastospblicosnocartodecrdito&#47;Gastoscomcartopblico&#47;1.png' />
+    <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' />
+    <param name='filter' value='publish=yes' />
+  </object>
+</div>                
+  <script type='text/javascript'>
+    var divElement = document.getElementById('viz1583697232180');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if ( divElement.offsetWidth > 800 ) { 
+      vizElement.style.width='1600px';vizElement.style.height='1625px';
+      } 
+    else if ( divElement.offsetWidth > 500 ) {
+       vizElement.style.width='1600px';vizElement.style.height='1627px';
+      } 
+    else { 
+      vizElement.style.width='100%';vizElement.style.height='1677px';
+      }                    
+    var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                  
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);               
+  </script>
 
     </div>
   </div>
 
   <!-- Contact section -->
-  <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="contact">
     <div class="w3-content" style="max-width:600px">
       <h4 class="w3-center"><b>Sugestões</b></h4>
       <p>Deixem suas sugestões sobre o nosso projeto!</p>
