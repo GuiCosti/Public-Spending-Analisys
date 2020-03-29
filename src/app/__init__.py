@@ -1,5 +1,7 @@
 import os
 from flask import Flask, redirect, url_for, render_template
+import codecs
+
 
 app = Flask(__name__, static_folder='static')
 adm = False
@@ -12,6 +14,10 @@ def home_():
 @app.route("/<name>")
 def user(name):
     return F"Hello {name}!"
+
+@app.route("/profile/<id>")
+def profile(id):
+    return render_template("profile.html", id=id, title="Análise de Gastos Públicos")
 
 @app.route("/admin")
 def admin():
