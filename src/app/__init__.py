@@ -10,11 +10,6 @@ adm = False
 def home_():
     return render_template("index.html", title="Análise de Gastos Públicos")
 
-# Get variable from URL
-@app.route("/<name>")
-def user(name):
-    return F"Hello {name}!"
-
 @app.route("/profile/<id>")
 def profile(id):
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos")
