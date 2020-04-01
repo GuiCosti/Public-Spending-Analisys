@@ -3,7 +3,29 @@
     {{ title }}
 {% endblock %}
 
+
+
 {% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
     <span class="w3-left w3-padding">Análise de Gastos Públicos</span>
@@ -13,6 +35,154 @@
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
 </div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+<!-- Team section -->
+<div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32">
+    <h4><b>Top 10</b></h4>
+</div>
+
+<hr>
+<div class="container bootstrap snippet">
+
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+      <div class="text-center">
+        {% if suspect['IMAGEM'] %}
+        <img src="{{ suspect['IMAGEM'] }}" class="avatar img-thumbnail" alt="avatar">
+        {% else %}
+        <img src="/static/img/avatar.png" class="avatar img-thumbnail" alt="avatar">
+        {% endif %}
+        <h5>{{ suspect['NOME'] }}</h5>
+      </div></hr><br>
+
+               
+          <div class="panel panel-default">
+            <div class="panel-heading">Partidos <i class="fa fa-link fa-1x"></i></div>
+            {% for p in party %}
+                {% if p['ATUAL'] == 1 %}
+                <div class="panel-body">{{ p["NOME"] }} <span class="badge badge-info pull-right" style="background-color: #17a2b8;">atual</span></div>
+                {% else %}
+                <div class="panel-body">{{ p["NOME"] }}</div>
+                {% endif %}
+            {% endfor %}
+          </div>
+          
+          
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Gastos<i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Gastos Anômalos</strong></span> <span style="color:crimson;">{{ suspect["GASTOS_ANOMALOS"] }}</span></li>
+            <li class="list-group-item text-right"><span class="pull-left" ><strong>Gastos Normais</strong></span> <span>{{ suspect["GASTOS_NORMAIS"] }}</span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Total Gasto</strong></span><span style="color:rgb(0, 146, 19);">R$ {{ suspect["TOTAL"] }}</span></li>
+          </ul>
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Sobre</a></li>
+                <li><a data-toggle="tab" href="#messages">Gastos Anômalos</a></li>
+                <li><a data-toggle="tab" href="#settings">Gastos Normais</a></li>
+              </ul>
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>Nome</h4></label>
+                              <input type="text" class="form-control" value="{{ suspect['NOME'] }}" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>CPF</h4></label>
+                                <input type="text" class="form-control" value="{{ suspect['CPF'] }}" readonly>
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Poder</h4></label>
+                              <input type="text" class="form-control" value="{{ suspect['PODER'] }}" readonly>
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="mobile"><h4>Órgão Máximo</h4></label>
+                             <input type="text" class="form-control" value="{{ suspect['ORGAO_MAXIMO'] }}" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Órgão Vincluado</h4></label>
+                              <input type="text" class="form-control" value="{{ suspect['ORGAO_VINCULADO'] }}" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Unidade Gestora</h4></label>
+                              <input type="text" class="form-control" value="{{ suspect['UNIDADE_GESTORA'] }}" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="password"><h4>Cargo</h4></label>
+                              <input type="text" class="form-control" value="{{ suspect['CARGO'] }}" readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="password2"><h4>Nacionalidade</h4></label>
+                            <input type="text" class="form-control" value="{{ suspect['ESTADO_NASCIMENTO'] }}" readonly>
+                          </div>
+                      </div>
+              	</form>
+              
+              <hr>
+              
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="messages">
+               
+               <h2></h2>
+               
+               <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+                         
+                      </div>
+              	</form>
+               
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="settings">
+            		
+               	
+                  <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                     
+              	</form>
+              </div>
+               
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+</div>
+
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">

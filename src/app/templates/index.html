@@ -161,20 +161,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                        {% for s in suspects %}
                                         <tr>
-                                            <td class="column1">ELIZEU LISBOA DANTAS</td>
-                                            <td class="column2">***.857.959-**</td>
-                                            <td class="column4">R$1.100.000</td>
-                                            <td class="column5"><span class="badge badge-danger">Anormal</span></td>
-                                            <td class="column6"><a href="/profile/1">{% include 'icons/eye.html' %}</a></td>
+                                            <td class="column1">{{ s['NOME'] }}</td>
+                                            <td class="column2">{{ s['CPF']}}</td>
+                                            <td class="column4">R$ {{ s['TOTAL'] }}</td>
+                                            <td class="column5"><span class="badge badge-danger">Anômalo</span></td>
+                                            <td class="column6"><a href="/profile/{{ s['ID'] }}">{% include 'icons/eye.html' %}</a></td>
                                         </tr>
-                                        <tr>
-                                            <td class="column1">HORALDO ANTONIO BRANDALISE</td>
-                                            <td class="column2">***.646.795-**</td>
-                                            <td class="column4">R$756.00</td>
-                                            <td class="column5"><span class="badge badge-success">Normal</span></td>
-                                            <td class="column6"><a href="/profile/2">{% include 'icons/eye.html' %}</a></td>
-                                        </tr>                                    
+                                        {% endfor %}
                                 </tbody>
                             </table>
                         </div>
