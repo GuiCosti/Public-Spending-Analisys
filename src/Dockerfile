@@ -13,15 +13,16 @@ ENV PATH /opt/conda/bin:$PATH
 ENV PORT 5000
 EXPOSE ${PORT}
 
-# Copy database to root folder
+# Copy database & configurations to root folder
 COPY database.db .
+COPY configurations.yml .
 
 # Copy all content from /app folder to /app folder inside the container
 COPY /app/ /app
 
 # Change container current directory to /app
 WORKDIR /app
-RUN ls
+
 
 ENV PATH /root/.local/bin:$PATH
 
@@ -29,5 +30,5 @@ ENV PATH /root/.local/bin:$PATH
 # The Install file contains a command to run "conda install --yes --file requirements.txt" for installing python requirements
 RUN chmod +x install && ./install
 
-ENTRYPOINT ["/bin/sh", "-c", "python __init__.py"]
+ENTRYPOINT ["/bin/sh", "-c", "python __init__.py ${PORT}"]
 
