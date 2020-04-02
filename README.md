@@ -13,3 +13,29 @@ Análise de Gastos Públicos do Portal da Transparência
 - [Jinja2 documentation](https://jinja.palletsprojects.com/en/2.9.x/templates/#with-statement)
 - [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
 - [Extended Isolation Forest (EIF) on GitHub](https://github.com/sahandha/eif)
+
+# Docker
+
+### Local
+
+Build Image:
+
+```bash
+docker build -t public-spending-api .
+```
+
+Run Container:
+
+```bash
+docker run --rm -p 5000:5000 --name pub-spend-api public-spending-api
+```
+
+Access Website:
+
+http://localhost:5000/
+
+Stop Container:
+
+```bash
+docker stop pub-spend-api
+```
