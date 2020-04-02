@@ -2,7 +2,6 @@ import os
 import sqlite3
 import yaml
 import pandas as pd
-import codecs
 from flask import Flask, redirect, url_for, render_template
 
 
