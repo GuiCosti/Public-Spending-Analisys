@@ -17,7 +17,7 @@ def home_():
 
 @app.route("/profile/<id>")
 def profile(id):
-    suspect = get_suspects(F'SELECT *, printf("%.2f", TOTAL_GASTO) AS TOTAL FROM SUSPECT WHERE ID = {id}')[0]
+    suspect = get_suspects('SELECT *, printf("%.2f", TOTAL_GASTO) AS TOTAL FROM SUSPECT WHERE ID = {}'.format(id))[0]
     politic_party = get_politic_party(id)
     print(politic_party)
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos", suspect=suspect, party=politic_party)
