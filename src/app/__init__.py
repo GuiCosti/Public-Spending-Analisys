@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 import os
 import sys
 import sqlite3
-# import yaml
+import yaml
 import pandas as pd
 from flask import Flask, redirect, url_for, render_template
 
@@ -28,26 +27,25 @@ def admin():
         return redirect(url_for("home_")) # redirect for function name
 
 def __get_db__():
-    db = sqlite3.connect("../database.db")
+    db = sqlite3.connect("." + configurations["Database"]["Path"])
     return db
 
-# Commented because of Zeit.io problem
-# def __get_config__(path=R"../configurations.yml"):
-#     with open(path) as file:
-#         configurations = yaml.load(file, Loader=yaml.FullLoader)
-#     return configurations
+def __get_config__(path=R"../configurations.yml"):
+    with open(path) as file:
+        configurations = yaml.load(file, Loader=yaml.FullLoader)
+    return configurations
 
 def df_to_list_dict(df):
     return list(df.T.to_dict().values())
 
 def get_suspects(query):
-    # configurations = __get_config__()
+    configurations = __get_config__()
     db = __get_db__()
     suspects = df_to_list_dict(pd.read_sql_query(query, db))
     return suspects
 
 def get_politic_party(id):
-    # configurations = __get_config__()
+    configurations = __get_config__()
     db = __get_db__()
     politic_party = df_to_list_dict(pd.read_sql_query("""SELECT POLITIC_PARTY.NOME, ATUAL FROM SUSPECT
                                                         INNER JOIN SUSPECT_POLITIC_PARTY ON SUSPECT_ID = SUSPECT.ID
