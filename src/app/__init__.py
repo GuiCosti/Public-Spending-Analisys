@@ -5,9 +5,7 @@ import yaml
 import pandas as pd
 from flask import Flask, redirect, url_for, render_template
 
-
 app = Flask(__name__, static_folder='static')
-adm = False
 
 @app.route("/")
 def home_():
@@ -20,11 +18,6 @@ def profile(id):
     politic_party = get_politic_party(id)
     print(politic_party)
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos", suspect=suspect, party=politic_party)
-
-@app.route("/admin")
-def admin():
-    if not adm:
-        return redirect(url_for("home_")) # redirect for function name
 
 def __get_db__(configurations):
     db = sqlite3.connect("." + configurations["Database"]["Path"])
@@ -52,7 +45,6 @@ def get_politic_party(id):
                                                         INNER JOIN POLITIC_PARTY ON POLITIC_PARTY_ID = POLITIC_PARTY.ID
                                                         WHERE SUSPECT.ID = {} ORDER BY 1 DESC""".format(id), db))
     return politic_party
-    
 
 if __name__ == "__main__":
     try:
