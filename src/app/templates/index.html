@@ -156,6 +156,7 @@
                                         <th class="column1"><b>Portador</b>  {% include 'icons/person.html' %}</th>
                                         <th class="column2"><b>CPF/ CNPJ</b>  {% include 'icons/cpf.html' %}</th>
                                         <th class="column4"><b>Gastos</b>  {% include 'icons/barchart.html' %}</th>
+                                        <th class="column5"><b>Anomalias</b>  {% include 'icons/up_arrow.html' %}</th>
                                         <th class="column5"><b>Status</b>  {% include 'icons/status.html' %}</th>
                                         <th class="column6"><b>Visualizar</b>  {% include 'icons/eye.html' %}</th>
                                     </tr>
@@ -166,6 +167,7 @@
                                             <td class="column1">{{ s['NOME'] }}</td>
                                             <td class="column2">{{ s['CPF']}}</td>
                                             <td class="column4">R$ {{ s['TOTAL'] }}</td>
+                                            <td class="column5"><span style="color: crimson;">{{ s['GASTOS_ANOMALOS'] }}</span></td>
                                             <td class="column5"><span class="badge badge-danger">Anômalo</span></td>
                                             <td class="column6"><a href="/profile/{{ s['ID'] }}">{% include 'icons/eye.html' %}</a></td>
                                         </tr>

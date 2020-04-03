@@ -21,6 +21,8 @@ https://labs.play-with-docker.com/
 
 ### Local
 
+Utilize apenas o *build.cmd* localizado na raiz do projeto, ou então siga os passos abaixo:
+
 Build Image:
 
 ```bash
