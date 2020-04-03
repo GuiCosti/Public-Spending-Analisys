@@ -26,7 +26,7 @@ def admin():
     if not adm:
         return redirect(url_for("home_")) # redirect for function name
 
-def __get_db__():
+def __get_db__(configurations):
     db = sqlite3.connect("." + configurations["Database"]["Path"])
     return db
 
@@ -40,13 +40,13 @@ def df_to_list_dict(df):
 
 def get_suspects(query):
     configurations = __get_config__()
-    db = __get_db__()
+    db = __get_db__(configurations)
     suspects = df_to_list_dict(pd.read_sql_query(query, db))
     return suspects
 
 def get_politic_party(id):
     configurations = __get_config__()
-    db = __get_db__()
+    db = __get_db__(configurations)
     politic_party = df_to_list_dict(pd.read_sql_query("""SELECT POLITIC_PARTY.NOME, ATUAL FROM SUSPECT
                                                         INNER JOIN SUSPECT_POLITIC_PARTY ON SUSPECT_ID = SUSPECT.ID
                                                         INNER JOIN POLITIC_PARTY ON POLITIC_PARTY_ID = POLITIC_PARTY.ID

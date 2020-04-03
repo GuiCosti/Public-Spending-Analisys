@@ -16,6 +16,9 @@ Análise de Gastos Públicos do Portal da Transparência
 
 # Docker
 
+### Docker Playground
+https://labs.play-with-docker.com/
+
 ### Local
 
 Build Image:
