@@ -16,7 +16,6 @@ def home_():
 def profile(id):
     suspect = get_suspects('SELECT *, printf("%.2f", TOTAL_GASTO) AS TOTAL FROM SUSPECT WHERE ID = {}'.format(id))[0]
     politic_party = get_politic_party(id)
-    print(politic_party)
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos", suspect=suspect, party=politic_party)
 
 def __get_db__(configurations):

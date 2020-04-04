@@ -1,10 +1,10 @@
-# Public Spending Analisys
+<h1><span style="color: green;">Public</span> <span style="color: #0000a2;">Spending</span> <span style="color: #e2e200;">Analisys</span></h1>
 Análise de Gastos Públicos do Portal da Transparência
 
-# Development Preview
+## Development Preview
 - [Zeit](https://zeit.co/)
 
-# References
+## References
 - [Isolation Forest](https://en.wikipedia.org/wiki/Isolation_forest)
 - [Anomaly Detection](https://en.wikipedia.org/wiki/Anomaly_detection)
 - [Unsupervised Anomaly Detection with Isolation Forest](https://www.youtube.com/watch?v=5p8B2Ikcw-k)
@@ -14,7 +14,7 @@ Análise de Gastos Públicos do Portal da Transparência
 - [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
 - [Extended Isolation Forest (EIF) on GitHub](https://github.com/sahandha/eif)
 
-# Docker
+## Docker
 
 ### Docker Playground
 https://labs.play-with-docker.com/
