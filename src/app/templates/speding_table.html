@@ -1,0 +1,37 @@
+<!-- Table -->
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1"><b>Data</b>  {% include 'icons/date.html' %}</th>
+                            <th class="column2"><b>Valor</b>  {% include 'icons/plus.html' %}</th>
+                            <th class="column7"><b>Estabelecimento</b>  {% include 'icons/city.html' %}</th>
+                            <th class="column5"><b>Seção</b>  {% include 'icons/section.html' %}</th>
+                            <th class="column5"><b>Local</b>  {% include 'icons/geo.html' %}</th>
+                            <th class="column5"><b>Probabilidade</b>  {% include 'icons/bullseye.html' %}</th>
+                            <th class="column5"><b>Status</b>  {% include 'icons/status.html' %}</th>
+                            <th class="column6"><b>Visualizar</b>  {% include 'icons/eye.html' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for d in data %}
+                            <tr>
+                                <td class="column1">{{ d['DATA_TRANS'] }}</td>
+                                <td class="column2">R$ {{ d['VALOR']}}</td>
+                                <td class="column4">{{ d['ESTABELECIMENTO'] }}</td>
+                                <td class="column5">{{ d['SECAO'] }}</td>
+                                <td class="column5">{{ d['NOME_UF'] }}</td>
+                                <td class="column5">{{ d['PROBABILIDADE'] }}</td>
+                                <td class="column5"><span class="badge badge-danger">Anômalo</span></td>
+                                <td class="column6"><a href="/profile/{{ d['ID'] }}">{% include 'icons/eye.html' %}</a></td>
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

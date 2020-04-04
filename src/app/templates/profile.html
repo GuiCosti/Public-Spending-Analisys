@@ -162,7 +162,9 @@
                <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="form-group">
-                         
+                        {% with data=spending["normal"], var2=False %}
+                            {% include 'speding_table.html' %}
+                        {% endwith %}
                       </div>
               	</form>
                
@@ -186,11 +188,12 @@
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
-    <h4>{{ id }}</h4>
 
     {% include 'shap/explainer.html' %}
 
 </div>
+
+
 
 <script>
     // Script to open and close sidebar

@@ -146,6 +146,7 @@
             
             <h4 class="w3-center"><b>TOP 10</b></h4>
 
+            <!-- Table -->
             <div class="limiter">
                 <div class="container-table100">
                     <div class="wrap-table100">
@@ -187,7 +188,7 @@
         <div class="w3-content" style="max-width:600px">
             <h4 class="w3-center"><b>Sugestões</b></h4>
             <p>Deixem suas sugestões sobre o nosso projeto!</p>
-            <form action="/action_page.php" target="_blank">
+            <form action="{{ url_for('message') }}" target="_blank">
                 <div class="w3-section">
                     <label>Nome</label>
                     <input class="w3-input w3-border" type="text" name="Name" required>
