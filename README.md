@@ -19,9 +19,24 @@ Análise de Gastos Públicos do Portal da Transparência
 ### Docker Playground
 https://labs.play-with-docker.com/
 
-### Local
+### Fast Deploy
 
-Utilize apenas o *build.cmd* localizado na raiz do projeto, ou então siga os passos abaixo:
+#### Windows
+Utilize apenas o *build.cmd* localizado na raiz do projeto:
+
+```bash
+build
+```
+
+
+#### Linux / MacOS
+Utilize o *build.sh* localizado na raiz do projeto:
+
+```bash
+$ bash build.sh
+```
+
+### Manual Deploy
 
 Build Image:
 
