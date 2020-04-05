@@ -39,9 +39,26 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
 
-<!-- Team section -->
+<!-- Title section -->
 <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32">
-    <h4><b>Top 10</b></h4>
+     <!-- Set Medal Colors-->
+    {% if suspect['ID'] == 1 %}
+        {% set color = "#e8e103" %}
+    {% elif suspect['ID'] == 2 %}
+        {% set color = "#aededc" %}
+    {% elif suspect['ID'] == 3 %}
+        {% set color = "#c14545" %}
+    {% endif %}
+ 
+    <!-- Apply Medals-->
+    {% if suspect['ID'] < 4 %}
+        {% with color=color %}
+        <h4><b>{{ suspect['NOME'] }} {% include 'icons/medal.html' %}</b></h4>
+        {% endwith %}
+    {% else %}
+        <h4><b>{{ suspect['NOME'] }}</b></h4>
+    {% endif %}
+
 </div>
 
 <!-- Profile Section-->

@@ -19,8 +19,11 @@ def profile(id):
     spending = get_spending(id)
     suspect = get_suspects('SELECT *, printf("%.2f", TOTAL_GASTO) AS TOTAL FROM SUSPECT WHERE ID = {}'.format(id))[0]
     politic_party = get_politic_party(id)
-    print(spending)
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos", suspect=suspect, party=politic_party, spending=spending)
+
+@app.route("/shap/<id>")
+def shap(id):
+    return render_template("shap_viewer.html", id=id, title="Análise de Gastos Públicos", )
 
 @app.route("/message")
 def message():

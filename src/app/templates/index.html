@@ -165,7 +165,23 @@
                                 <tbody>
                                         {% for s in suspects %}
                                         <tr>
-                                            <td class="column1">{{ s['NOME'] }}</td>
+                                            <!-- Set Medal Colors-->
+                                            {% if s['ID'] == 1 %}
+                                                {% set color = "#e8e103" %}
+                                            {% elif s['ID'] == 2 %}
+                                                {% set color = "#aededc" %}
+                                            {% elif s['ID'] == 3 %}
+                                                {% set color = "#c14545" %}
+                                            {% endif %}
+                                            
+                                            <!-- Apply Medals-->
+                                            {% if s['ID'] < 4 %}
+                                                {% with color=color %}
+                                                <td class="column1">{{ s['NOME'] }} {% include 'icons/medal.html' %}</td>
+                                                {% endwith %}
+                                            {% else %}
+                                                <td class="column1">{{ s['NOME'] }}</td>
+                                            {% endif %}
                                             <td class="column2">{{ s['CPF']}}</td>
                                             <td class="column4">R$ {{ s['TOTAL'] }}</td>
                                             <td class="column5"><span style="color: crimson;">{{ s['GASTOS_ANOMALOS'] }}</span></td>
