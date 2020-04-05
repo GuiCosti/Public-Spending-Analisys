@@ -26,12 +26,17 @@
                                 <td class="column5">{{ d['SECAO'] }}</td>
                                 <td class="column5">{{ d['NOME_UF'] }}</td>
                                 <td class="column5">{{ d['PROBABILIDADE'] }}</td>
-                                {% if anomaly == 1 %}
+                                {% if anomaly == -1 %}
                                 <td class="column5"><span class="badge badge-danger" style="background-color: #dc3545;">Anômalo</span></td>
                                 {% else %}
                                 <td class="column5"><span class="badge badge-danger" style="background-color: #28a745;">Normal</span></td>       
                                 {% endif %}
+
+                                {% if visualize == 1 %}
                                 <td class="column6"><a href="/shap/{{ d['SPENDING_ID'] }}">{% include 'icons/eye.html' %}</a></td>
+                                {% else %}
+                                <td class="column6" block><a style="cursor: not-allowed;">{% include 'icons/eye.html' %}</a></td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                     </tbody>

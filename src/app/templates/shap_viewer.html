@@ -23,5 +23,58 @@
     <h4><b>Análise de SHAP</b></h4>
 </div>
 
+<!-- Shap Image section -->
+<div class="w3-container w3-center w3-padding-32">
+    {% include shap_image %}
+
+    {% with data=spending, anomaly=spending[0]["RESULTADO"], visualize=0 %}
+        {% include 'speding_table.html' %}
+    {% endwith %}
+</div>
+<hr>
+<!-- Value Description section -->
+<div class="w3-container w3-center w3-padding-32">
+    <h4><b>Descrição</b></h4>
+        <div class="w3-content w3-justify" style="max-width:600px">
+            <p>- <b>valTrans</b>: Valor da transação realizada</p>
+            <p>- <b>codSubclasse</b>: Código da Subclasse do estabelecimento onde o gasto foi realizado</p>
+            <p>- <b>tipoCod</b>: Diferencia os gastos de pessoa física e jurídica</p>
+            <p>- <b>valRepetidoPessoa</b>: Número de transações realizadas pelo portador contendo um mesmo valor</p>
+            <p>- <b>codEstabPessoa</b>: Número de transações realizadas pelo portador para o mesmo estabelecimento</p>
+            <p>- <b>valTransAg</b>: Mesma descrição de <b>valRepetidoPessoa</b> só que por Agência</p>
+            <p>- <b>codEstabAg</b>: Mesma descrição de <b>codEstabPessoa</b> só que por Agência</p>
+            <p>- <b>valTransDept</b>: Mesma descrição de <b>valRepetidoPessoa</b> só que por Departamento</p>
+            <p>- <b>codEstabDept</b>: Mesma descrição de <b>codEstabPessoa</b> só que por Departamento</p>
+            <p>- <b>DOW</b>: Dia da semana do gasto em questão</p>
+            <p>- <b>dia</b>: Dia do gasto em questão</p>
+            <p>- <b>mes</b>: Mês do gasto em questão</p>
+            <p>- <b>ano</b>: Ano do gasto em questão</p>
+
+            <hr class="w3-opacity">
+            <h4 class="w3-padding-16">Estatísticas</h4>
+            <p class="w3-wide">Gastos Normais</p>
+            <div class="w3-white">
+                {% if p_normal < 3 %}
+                    <div class="w3-container w3-padding-small w3-center w3-green" style="width:5%">{{ p_normal }}%</div>
+                {% else %}
+                    <div class="w3-container w3-padding-small w3-center w3-green" style="width:{{ p_normal }}%">{{ p_normal }}%</div>
+                {% endif %}
+            </div>
+            <p class="w3-wide">Gastos Anômalos</p>
+            <div class="w3-white">
+                <div class="w3-container w3-padding-small w3-center w3-pink" style="width:{{ p_anomaly }}%">{{ p_anomaly }}%</div>
+            </div>
+            <p class="w3-wide">Representatividade do Valor</p>
+            <div class="w3-white">
+                {% if p_normal < 3 %}
+                    <div class="w3-container w3-padding-small w3-center w3-blue" style="width:5%">{{ p_repr }}%</div>
+                {% else %}
+                    <div class="w3-container w3-padding-small w3-center w3-blue" style="width:{{ p_repr }}%">{{ p_repr }}%</div>
+                {% endif %}
+            </div>
+            <hr class="w3-opacity">
+    </div>
+</div>
+
 
 {% endblock %}

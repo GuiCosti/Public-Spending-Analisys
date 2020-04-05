@@ -3,6 +3,7 @@ import sys
 import sqlite3
 import yaml
 import pandas as pd
+import math
 from flask import Flask, redirect, url_for, render_template
 
 app = Flask(__name__, static_folder='static')
@@ -16,14 +17,27 @@ def home_():
 
 @app.route("/profile/<id>")
 def profile(id):
-    spending = get_spending(id)
+    spending = list_spending(id)
     suspect = get_suspects('SELECT *, printf("%.2f", TOTAL_GASTO) AS TOTAL FROM SUSPECT WHERE ID = {}'.format(id))[0]
     politic_party = get_politic_party(id)
     return render_template("profile.html", id=id, title="Análise de Gastos Públicos", suspect=suspect, party=politic_party, spending=spending)
 
 @app.route("/shap/<id>")
 def shap(id):
-    return render_template("shap_viewer.html", id=id, title="Análise de Gastos Públicos", )
+    shap_image = "/shap/{}_shap.html".format(id)
+    spending = get_spending(id)
+    p_anomaly, p_normal = percentage_spending(id)
+    p_anomaly = 100 - p_normal
+    print(p_anomaly)
+    p_repr = spending_representativeness(id, spending[0]["VALOR"])
+    return render_template("shap_viewer.html",
+                                id=id,
+                                title="Análise de Gastos Públicos",
+                                shap_image=shap_image,
+                                spending=spending,
+                                p_anomaly= p_anomaly,
+                                p_normal =p_normal,
+                                p_repr=p_repr)
 
 @app.route("/message")
 def message():
@@ -60,15 +74,43 @@ def get_politic_party(id):
                                                         WHERE SUSPECT.ID = {} ORDER BY 1 DESC""".format(id), db))
     return politic_party
 
-def get_spending(id):
+def list_spending(suspect_id):
     db = set_db()
     query = """SELECT *, printf("%.2f", VALOR) AS VAL,  printf("%.2f", PROBABILIDADE) AS PROB 
                 FROM SPENDING WHERE SUSPECT_ID =    {} AND RESULTADO = {}
                 ORDER BY PROBABILIDADE DESC LIMIT 10 """
-    anomaly = df_to_list_dict(pd.read_sql_query(query.format(id, -1), db))
-    normal = df_to_list_dict(pd.read_sql_query(query.format(id, 1), db))
+    anomaly = df_to_list_dict(pd.read_sql_query(query.format(suspect_id, -1), db))
+    normal = df_to_list_dict(pd.read_sql_query(query.format(suspect_id, 1), db))
     return { "anomaly": anomaly, "normal": normal }
-    
+
+def get_spending(id):
+    db = set_db()
+    query = """SELECT *, printf("%.2f", VALOR) AS VAL, printf("%.2f", PROBABILIDADE) AS PROB 
+            FROM SPENDING WHERE SPENDING_ID = {} LIMIT 1"""
+    spending = df_to_list_dict(pd.read_sql_query(query.format(id), db))
+    return spending
+
+def count_spending(spending_id):
+    db = set_db()
+    query = """SELECT COUNT(1) FROM SPENDING WHERE SUSPECT_ID = (SELECT SUSPECT_ID FROM SPENDING WHERE SPENDING_ID = {} LIMIT 1) AND RESULTADO = {}"""
+    anomaly = int(df_to_list_dict(pd.read_sql_query(query.format(spending_id, -1), db))[0]["COUNT(1)"])
+    normal = int(df_to_list_dict(pd.read_sql_query(query.format(spending_id, 1), db))[0]["COUNT(1)"])
+    return anomaly, normal
+
+def percentage_spending(spending_id):
+    n_anomaly, n_normal = count_spending(spending_id)
+    total = n_normal + n_anomaly
+    p_anomaly = math.ceil(n_anomaly/total * 100)
+    p_normal = math.ceil(n_normal/total * 100)
+
+    return p_anomaly, p_normal
+
+def spending_representativeness(spending_id, spending_value):
+    db = set_db()
+    query = """SELECT SUM(VALOR) FROM SPENDING WHERE SUSPECT_ID = (SELECT SUSPECT_ID FROM SPENDING WHERE SPENDING_ID = {} LIMIT 1)"""
+    total = df_to_list_dict(pd.read_sql_query(query.format(spending_id), db))[0]["SUM(VALOR)"]
+    return math.ceil(spending_value / total * 100)
+ 
 
 ### Startup ###
 
