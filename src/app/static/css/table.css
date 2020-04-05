@@ -76,6 +76,7 @@
   }
   
   tbody tr {
+    background-color: white;
     font-size: 15px;
     color: #808080;
     line-height: 1.2;
@@ -118,7 +119,7 @@
   }
 
   .column7 {
-    width: 200px;
+    width: 220px;
     text-align: right;
   }
   

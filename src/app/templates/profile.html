@@ -44,6 +44,7 @@
     <h4><b>Top 10</b></h4>
 </div>
 
+<!-- Profile Section-->
 <hr>
 <div class="container bootstrap snippet">
 
@@ -84,12 +85,12 @@
     	<div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Sobre</a></li>
-                <li><a data-toggle="tab" href="#messages">Gastos Anômalos</a></li>
-                <li><a data-toggle="tab" href="#settings">Gastos Normais</a></li>
+                <!-- <li><a data-toggle="tab" href="#messages">Gastos Anômalos</a></li>
+                <li><a data-toggle="tab" href="#settings">Gastos Normais</a></li> -->
               </ul>
 
               
-          <div class="tab-content">
+        <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
@@ -162,7 +163,7 @@
                <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="form-group">
-                        {% with data=spending["normal"], var2=False %}
+                        {% with data=spending["anomaly"], anomaly=1 %}
                             {% include 'speding_table.html' %}
                         {% endwith %}
                       </div>
@@ -174,16 +175,37 @@
                	
                   <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
-                     
+                    {% with data=spending["normal"], anomaly=0 %}
+                        {% include 'speding_table.html' %}
+                    {% endwith %}
               	</form>
               </div>
                
-              </div><!--/tab-pane-->
-          </div><!--/tab-content-->
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+    </div><!--/col-9-->
+</div><!--/row-->
 
-        </div><!--/col-9-->
-    </div><!--/row-->
+    <!-- Top 10 Anomaly -->
+    <div class="w3-container w3-center w3-padding-32">
+        <h3><b>Top 10 Gastos Anômalos</b></h3>
+        {% with data=spending["anomaly"], anomaly=1 %}
+            {% include 'speding_table.html' %}
+        {% endwith %}
+    </div>
+
+    <!-- Top 10 Normal -->
+    <div class="w3-container w3-center w3-padding-32">
+        <h3><b>Top 10 Gastos Normais</b></h3>
+        {% with data=spending["normal"], anomaly=0 %}
+            {% include 'speding_table.html' %}
+        {% endwith %}
+    </div>
 </div>
+
+
+
+
 
 
 <!-- !PAGE CONTENT! -->

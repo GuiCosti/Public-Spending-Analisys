@@ -1,3 +1,4 @@
+
 <!-- Table -->
 <div class="limiter">
     <div class="container-table100">
@@ -20,12 +21,16 @@
                             {% for d in data %}
                             <tr>
                                 <td class="column1">{{ d['DATA_TRANS'] }}</td>
-                                <td class="column2">R$ {{ d['VALOR']}}</td>
-                                <td class="column4">{{ d['ESTABELECIMENTO'] }}</td>
+                                <td class="column2">R$ {{ d['VAL']}}</td>
+                                <td class="column7">{{ d['ESTABELECIMENTO'] }}</td>
                                 <td class="column5">{{ d['SECAO'] }}</td>
                                 <td class="column5">{{ d['NOME_UF'] }}</td>
                                 <td class="column5">{{ d['PROBABILIDADE'] }}</td>
-                                <td class="column5"><span class="badge badge-danger">Anômalo</span></td>
+                                {% if anomaly == 1 %}
+                                <td class="column5"><span class="badge badge-danger" style="background-color: #dc3545;">Anômalo</span></td>
+                                {% else %}
+                                <td class="column5"><span class="badge badge-danger" style="background-color: #28a745;">Normal</span></td>       
+                                {% endif %}
                                 <td class="column6"><a href="/profile/{{ d['ID'] }}">{% include 'icons/eye.html' %}</a></td>
                             </tr>
                             {% endfor %}

@@ -59,7 +59,7 @@ def get_politic_party(id):
 
 def get_spending(id):
     db = set_db()
-    query = """SELECT *, printf("%.2f", VALOR) AS VAL 
+    query = """SELECT *, printf("%.2f", VALOR) AS VAL,  printf("%.2f", PROBABILIDADE) AS PROB 
                 FROM SPENDING WHERE SUSPECT_ID =    {} AND RESULTADO = {}
                 ORDER BY PROBABILIDADE DESC LIMIT 10 """
     anomaly = df_to_list_dict(pd.read_sql_query(query.format(id, -1), db))
