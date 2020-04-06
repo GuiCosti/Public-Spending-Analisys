@@ -26,10 +26,8 @@ def profile(id):
 def shap(id):
     shap_image = "/shap/{}_shap.html".format(id)
     spending = get_spending(id)
-    p_anomaly, p_normal = percentage_spending(id)
-    p_anomaly = 100 - p_normal
-    print(p_anomaly)
-    p_repr = spending_representativeness(id, spending[0]["VALOR"])
+    p_anomaly, p_normal, p_repr = get_spending_statistics(id, spending[0]["VALOR"])
+    has_file = os.path.exists("./templates" + shap_image)
     return render_template("shap_viewer.html",
                                 id=id,
                                 title="Análise de Gastos Públicos",
@@ -37,7 +35,8 @@ def shap(id):
                                 spending=spending,
                                 p_anomaly= p_anomaly,
                                 p_normal =p_normal,
-                                p_repr=p_repr)
+                                p_repr=p_repr,
+                                has_file=has_file)
 
 @app.route("/message")
 def message():
@@ -110,6 +109,12 @@ def spending_representativeness(spending_id, spending_value):
     query = """SELECT SUM(VALOR) FROM SPENDING WHERE SUSPECT_ID = (SELECT SUSPECT_ID FROM SPENDING WHERE SPENDING_ID = {} LIMIT 1)"""
     total = df_to_list_dict(pd.read_sql_query(query.format(spending_id), db))[0]["SUM(VALOR)"]
     return math.ceil(spending_value / total * 100)
+
+def get_spending_statistics(id, value):
+    p_anomaly, p_normal = percentage_spending(id)
+    p_anomaly = 100 - p_normal
+    p_repr = spending_representativeness(id, value)
+    return p_anomaly, p_normal, p_repr
  
 
 ### Startup ###

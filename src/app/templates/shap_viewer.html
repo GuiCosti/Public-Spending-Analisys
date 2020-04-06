@@ -25,7 +25,11 @@
 
 <!-- Shap Image section -->
 <div class="w3-container w3-center w3-padding-32">
-    {% include shap_image %}
+    {% if has_file %}
+        {% include shap_image %}
+    {% else %}
+        <h3>Shap Indisponível</h3>
+    {% endif %}
 
     {% with data=spending, anomaly=spending[0]["RESULTADO"], visualize=0 %}
         {% include 'speding_table.html' %}
@@ -54,7 +58,7 @@
             <h4 class="w3-padding-16">Estatísticas</h4>
             <p class="w3-wide">Gastos Normais</p>
             <div class="w3-white">
-                {% if p_normal < 3 %}
+                {% if p_normal < 5 %}
                     <div class="w3-container w3-padding-small w3-center w3-green" style="width:5%">{{ p_normal }}%</div>
                 {% else %}
                     <div class="w3-container w3-padding-small w3-center w3-green" style="width:{{ p_normal }}%">{{ p_normal }}%</div>
@@ -66,7 +70,7 @@
             </div>
             <p class="w3-wide">Representatividade do Valor</p>
             <div class="w3-white">
-                {% if p_normal < 3 %}
+                {% if p_repr < 5 %}
                     <div class="w3-container w3-padding-small w3-center w3-blue" style="width:5%">{{ p_repr }}%</div>
                 {% else %}
                     <div class="w3-container w3-padding-small w3-center w3-blue" style="width:{{ p_repr }}%">{{ p_repr }}%</div>
