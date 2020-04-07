@@ -110,6 +110,31 @@ def spec():
 
 @app.route('/api/list', methods=["GET"])
 def list_spendings(offset=1, limit=100):
+    """
+        Lista todos gastos com score
+        ---
+        tags:
+          - List
+        definitions:
+          - schema:
+              id: Group
+              properties:
+                name:
+                 type: string
+                 description: Lista todos os gastos
+        parameters:
+          - in: query
+            name: offset
+            schema:
+              type: integer
+          - in: query
+            name: limit
+            schema:
+              type: integer
+        responses:
+          200:
+            description: Lista com os gastos
+        """
     try:
         offset = request.args.get('offset')
         limit = request.args.get('limit')
