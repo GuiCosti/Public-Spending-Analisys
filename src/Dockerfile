@@ -1,4 +1,5 @@
-FROM ubuntu:18.04
+#FROM ubuntu:18.04
+FROM python:3.8-slim
 
 ## Conda setup
 ARG DEBIAN_FRONTEND=noninteractive
