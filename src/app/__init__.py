@@ -49,55 +49,6 @@ def shap(id):
 
 @app.route("/message")
 def message():
-    """
-        Create a new user
-        ---
-        tags:
-          - users
-        definitions:
-          - schema:
-              id: Group
-              properties:
-                name:
-                 type: string
-                 description: the group's name
-        parameters:
-          - in: body
-            name: body
-            schema:
-              id: User
-              required:
-                - email
-                - name
-              properties:
-                email:
-                  type: string
-                  description: email for user
-                name:
-                  type: string
-                  description: name for user
-                address:
-                  description: address for user
-                  schema:
-                    id: Address
-                    properties:
-                      street:
-                        type: string
-                      state:
-                        type: string
-                      country:
-                        type: string
-                      postalcode:
-                        type: string
-                groups:
-                  type: array
-                  description: list of groups
-                  items:
-                    $ref: "#/definitions/Group"
-        responses:
-          201:
-            description: User created
-        """
     return "Obrigado!"
 
 @app.route("/spec")
@@ -115,13 +66,6 @@ def list_spendings(offset=1, limit=100):
         ---
         tags:
           - List
-        definitions:
-          - schema:
-              id: Group
-              properties:
-                name:
-                 type: string
-                 description: Lista todos os gastos
         parameters:
           - in: query
             name: offset
@@ -135,13 +79,64 @@ def list_spendings(offset=1, limit=100):
           200:
             description: Lista com os gastos
         """
+    db = set_db()
+
     try:
         offset = request.args.get('offset')
         limit = request.args.get('limit')
     except:
-        pass
+        offset = 0
+        limit = 4
+    
+    offset = int(offset) - 1
+    limit = int(limit) - 1
+    
+    query = """SELECT * FROM CARTOES C 
+                INNER JOIN RESULTS R
+                ON R.id = C.id
+                LIMIT {} OFFSET {}""".format(limit, offset)
 
-    return F"{offset} e {limit}"
+    json_ = jsonify(df_to_list_dict(pd.read_sql_query(query, db)))
+    
+    return json_
+
+@app.route('/api/get', methods=["POST"])
+def get_spendings():
+    """
+        Lista todos gastos a partir do nome do portador
+        ---
+        tags:
+          - GetByName
+        parameters:
+          - in: body
+            name: body
+            required:
+              - name
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: name for user
+        responses:
+          200:
+            description: Lista com os gastos
+        """
+    db = set_db()
+
+    try:
+        req_data = request.get_json()
+        nome = req_data["name"]
+    except:
+        nome = ""
+    
+    query = """SELECT * FROM CARTOES C 
+                INNER JOIN RESULTS R
+                ON R.id = C.id
+                WHERE nome_portador = '{}'""".format(nome)
+
+    json_ = jsonify(df_to_list_dict(pd.read_sql_query(query, db)))
+    
+    return json_
 
 ### Functions ###
 
