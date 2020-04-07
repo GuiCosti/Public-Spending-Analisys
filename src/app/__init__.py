@@ -4,9 +4,18 @@ import sqlite3
 import yaml
 import pandas as pd
 import math
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, jsonify, request
+from flask_swagger import swagger
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__, static_folder='static')
+
+### Swagger ###
+
+SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI (without trailing '/')
+API_URL = '/spec'  # Our API url (can of course be a local resource)
+swaggerui_blueprint = get_swaggerui_blueprint(SWAGGER_URL, API_URL,config={  'app_name': "API - Análise de Gastos Públicos"})
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 ### Routes ###
 
@@ -40,7 +49,74 @@ def shap(id):
 
 @app.route("/message")
 def message():
+    """
+        Create a new user
+        ---
+        tags:
+          - users
+        definitions:
+          - schema:
+              id: Group
+              properties:
+                name:
+                 type: string
+                 description: the group's name
+        parameters:
+          - in: body
+            name: body
+            schema:
+              id: User
+              required:
+                - email
+                - name
+              properties:
+                email:
+                  type: string
+                  description: email for user
+                name:
+                  type: string
+                  description: name for user
+                address:
+                  description: address for user
+                  schema:
+                    id: Address
+                    properties:
+                      street:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+                      postalcode:
+                        type: string
+                groups:
+                  type: array
+                  description: list of groups
+                  items:
+                    $ref: "#/definitions/Group"
+        responses:
+          201:
+            description: User created
+        """
     return "Obrigado!"
+
+@app.route("/spec")
+def spec():
+    swag = swagger(app)
+    swag['info']['version'] = "1.0"
+    swag['info']['title'] = "API - Análise de Gastos Públicos"
+    return jsonify(swag) # Route to generate swagger.json documentation based on methods docstrings
+
+
+@app.route('/api/list', methods=["GET"])
+def list_spendings(offset=1, limit=100):
+    try:
+        offset = request.args.get('offset')
+        limit = request.args.get('limit')
+    except:
+        pass
+
+    return F"{offset} e {limit}"
 
 ### Functions ###
 
