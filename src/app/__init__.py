@@ -132,7 +132,7 @@ def get_spendings():
     query = """SELECT * FROM CARTOES C 
                 INNER JOIN RESULTS R
                 ON R.id = C.id
-                WHERE nome_portador = '{}'""".format(nome)
+                WHERE nome_portador = '{}'""".format(nome.upper())
 
     json_ = jsonify(df_to_list_dict(pd.read_sql_query(query, db)))
     
