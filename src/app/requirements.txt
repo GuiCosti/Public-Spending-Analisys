@@ -1,5 +1,5 @@
 PyYAML>=3.10
 tornado>=4.3
 Flask==1.0.2
-numpy==1.16.3
+numpy==1.22.0
 pandas==0.24.2
