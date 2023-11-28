@@ -1,5 +1,5 @@
 <h1><span style="color: green;">Public</span> <span style="color: #0000a2;">Spending</span> <span style="color: #e2e200;">Analisys</span></h1>
-Project to analyse anomalies spent by corporate credit cards of Brazilian government.
+Project to analyse anomalies spent by corporate credit cards of the Brazilian government.
 
 ## Development Preview
 - [Zeit](https://zeit.co/)
